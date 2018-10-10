@@ -1,0 +1,13 @@
+.movieList {
+    .posterCon {
+        float: left; margin-right: 15px;
+        img {
+            display: block;
+            height: 300px;
+            width: 100%;
+        }
+    }   
+}
+.btnViewMovie {
+    text-decoration: none;
+}
