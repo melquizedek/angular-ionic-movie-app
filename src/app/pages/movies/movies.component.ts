@@ -23,12 +23,12 @@ export class MoviesComponent implements OnDestroy {
 			private movieService: MovieService,
 			private CONFIG: ConfigService) { 
 
-				this.movieService.getMovie('earth', '10', '', '');
-                this.initTialMovieListSubcrip  = this.movieService.movies$.subscribe((resp: any) => {
-                     this.movies = resp.Search.sort((a, b) => {
-                                        return b.Year - a.Year
-                                    });
-                  });
+			this.initTialMovieListSubcrip = this.movieService.getMovie('earth', '10', '', '')
+						.subscribe((resp: any) => {
+									this.movies = resp.Search.sort((a, b) => {
+												return b.Year - a.Year
+										});
+						});
 		}
 
 		searchMovie(ev: any) {

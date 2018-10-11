@@ -8,13 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 
 import { MovieService } from './shared/services/movie.service';
 import { ConfigService } from './shared/services/config.service';
 import { MovieViewComponent } from './pages/movie-view/movie-view.component';
 import { PageRatingComponent } from './pages/page-rating/page-rating.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 
 export const firebaseConf = {
@@ -38,17 +38,17 @@ export const firebaseConf = {
   ],
   declarations: [ 
     AppComponent, 
-    HomeComponent, 
     MoviesComponent, 
     MovieViewComponent,
-    PageRatingComponent
+    PageRatingComponent,
+    FileUploadComponent
   ],
   entryComponents: [ 
     AppComponent, 
-    HomeComponent,
     MoviesComponent,
     MovieViewComponent,
-    PageRatingComponent
+    PageRatingComponent,
+    FileUploadComponent
   ],
   providers: [
     ConfigService,

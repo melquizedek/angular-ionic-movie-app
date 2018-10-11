@@ -1,34 +1,41 @@
-<ion-searchbar (ionInput)="searchMovie($event)"></ion-searchbar>
+<ion-header>
+    <ion-navbar>
+      <ion-title>Ionic App</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <ion-searchbar (ionInput)="searchMovie($event)"></ion-searchbar>
 
-<ion-card *ngIf="!this.movies" color="danger">
-    <ion-card-header style="text-align: center">
-      Movie not found!
-    </ion-card-header>
-</ion-card>
-
-<a href="#" *ngFor="let movie of movies" class="btnViewMovie" (click)="selectedMovie(movie.imdbID)">
-<ion-card class="movieList">
-    <ion-card-content>
-        <span class="posterCon">
-            <img src="{{ CONFIG.NO_IMG }}" *ngIf="movie.Poster === 'N/A'"/>
-            <img src="{{ movie.Poster }}" *ngIf="movie.Poster !== 'N/A'"/>
-        </span>
-        <ion-card-title>
-        {{ movie.Title }}
-        </ion-card-title>
-        
-        <ion-grid>
-            <ion-row>
-                <ion-col col-lg-4 col-md-3 col-sm-3>
-                        <ion-item>
-                            <ion-icon name="calendar" item-start></ion-icon>
-                            Year
-                            <ion-badge item-end>{{ movie.Year }}</ion-badge>
-                        </ion-item>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-
-    </ion-card-content>
-  </ion-card>
-  </a>
+    <ion-card *ngIf="!this.movies" color="danger">
+        <ion-card-header style="text-align: center">
+          Movie not found!
+        </ion-card-header>
+    </ion-card>
+    
+    <a href="#" *ngFor="let movie of movies" class="btnViewMovie" (click)="selectedMovie(movie.imdbID)">
+    <ion-card class="movieList">
+        <ion-card-content>
+            <span class="posterCon">
+                <img src="{{ CONFIG.NO_IMG }}" *ngIf="movie.Poster === 'N/A'"/>
+                <img src="{{ movie.Poster }}" *ngIf="movie.Poster !== 'N/A'"/>
+            </span>
+            <ion-card-title>
+            {{ movie.Title }}
+            </ion-card-title>
+            
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-lg-4 col-md-3 col-sm-3>
+                            <ion-item>
+                                <ion-icon name="calendar" item-start></ion-icon>
+                                Year
+                                <ion-badge item-end>{{ movie.Year }}</ion-badge>
+                            </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+    
+        </ion-card-content>
+      </ion-card>
+      </a>
+  </ion-content>

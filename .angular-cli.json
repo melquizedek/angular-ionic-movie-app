@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ionic-ng"
+    "name": "ng5"
   },
   "apps": [
     {
@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "theme/variables.scss",
         "styles.scss"
       ],
       "scripts": [],

@@ -23,6 +23,7 @@ export class MovieService {
         private CONFIG: ConfigService) {
   }
 
+  // FOR UNIT TEST PURPOSES, MAKE THE ENDPOINT SAME IN THE SPEC FILE.
 //   getMovie(search: string, page: string, year?: string, type?: string) {
 //       this.movies$ = Observable.create((ob: Observer<any>) => {
 //           this.movieObserver$ = ob;
@@ -43,18 +44,19 @@ export class MovieService {
 
 //     }
 
-getMovie(search: string, page: string, year?: string, type?: string) : Observable<any> {
-        
-        let API_URL = this.CONFIG.API_HOST;
-        
-        if (search.length) API_URL += '&s=' + search;
-        if (page.length) API_URL += '&page=' + page; 
-        if (year.length) API_URL += '&y=' + year;
-        
-        API_URL += '&type=' + (type.length) ? type : 'movie';
-        API_URL += '&plot=full';
 
-        return this.http.get("http://www.omdbapi.com/?apikey=4d1886d2&s=hero&page=10&y=2017&plot=full");
+    getMovie(search: string, page: string, year?: string, type?: string) : Observable<any> {
+            
+            let API_URL = this.CONFIG.API_HOST;
+            
+            if (search.length) API_URL += '&s=' + search;
+            if (page.length) API_URL += '&page=' + page; 
+            if (year.length) API_URL += '&y=' + year;
+            
+            API_URL += '&type=' + (type.length) ? type : 'movie';
+            API_URL += '&plot=full';
+
+            return this.http.get(API_URL);
     }
 
 

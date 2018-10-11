@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './pages/home/home.component';
+import { MoviesComponent } from './pages/movies/movies.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,13 @@ import { HomeComponent } from './pages/home/home.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  rootPage = HomeComponent;
+
+  moviePage: any;
+  uploadPage: any;
+
+  constructor() {
+    this.moviePage = MoviesComponent;
+    this.uploadPage = FileUploadComponent;
+  }
+
 }
