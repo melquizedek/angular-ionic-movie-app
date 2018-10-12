@@ -5,7 +5,7 @@ import { ConfigService } from "./config.service";
 
 
 
-fdescribe('MovieService', () => {
+describe('MovieService', () => {
 
     let movieService: MovieService;
     let httpMock: HttpTestingController;
@@ -55,7 +55,7 @@ fdescribe('MovieService', () => {
 
         movieService.getMovie('hero', '10', '2017', 'movie').subscribe(resp => {
             expect(resp.Search.length).toBeGreaterThan(0);
-            expect(resp.Search[1].imdbID).toEqual("tt6491179");
+            expect(resp.Search[1].imdbID).toEqual("tt6491170");
         });
 
         const request = httpMock.expectOne(CONFIG.API_HOST + '&s=hero&page=10&y=2017&plot=full');

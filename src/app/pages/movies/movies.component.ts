@@ -22,28 +22,34 @@ export class MoviesComponent implements OnDestroy {
 			public navParams: NavParams,
 			private movieService: MovieService,
 			private CONFIG: ConfigService) { 
+		}
 
-			this.initTialMovieListSubcrip = this.movieService.getMovie('earth', '10', '', '')
-						.subscribe((resp: any) => {
-									this.movies = resp.Search.sort((a, b) => {
-												return b.Year - a.Year
-										});
-						});
+		ngOnInit() {
+					this.initTialMovieListSubcrip = 
+							this.movieService.getMovie('earth', '10', '', '')
+							.subscribe((resp: any) => {
+										if (resp.Response === "True") {
+											this.movies = resp.Search.sort((a, b) => {
+														return b.Year - a.Year	
+												});
+										}
+							});
+		}
+
+		ionViewLoaded() {
 		}
 
 		searchMovie(ev: any) {
-			let keyword = (ev.target.value) ? ev.target.value : "earth";
-			if (keyword) {
-			  this.movieService.getMovie(keyword, '10', '', '');
-			}
-			this.movieResultListSubscrip = this.movieService.movies$.subscribe((resp: any) => {
-				this.movies = null;
-				if (resp.Response === "True") {
-					this.movies = resp.Search.sort((a, b) => {
-									  return b.Year - a.Year;
-								  });
-				}
-			});
+					let keyword = (ev.target.value) ? ev.target.value : "earth";
+					this.movieService.getMovie(keyword, '10', '', '')
+							.subscribe((resp: any) => {
+									this.movies = null;
+									if (resp.Response === "True") {
+										this.movies = resp.Search.sort((a, b) => {
+															return b.Year - a.Year;
+														});
+									}
+							});
 		}
 	  
 		selectedMovie(imdbId: any) {

@@ -4,6 +4,7 @@
     </ion-navbar>
   </ion-header>
   <ion-content padding>
+      
     <ion-searchbar (ionInput)="searchMovie($event)"></ion-searchbar>
 
     <ion-card *ngIf="!this.movies" color="danger">
