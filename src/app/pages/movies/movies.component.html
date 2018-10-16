@@ -5,7 +5,7 @@
   </ion-header>
   <ion-content padding>
       
-    <ion-searchbar (ionInput)="searchMovie($event)"></ion-searchbar>
+    <app-search-movie (searchMovie)="doSearchMovie($event)"></app-search-movie>
 
     <ion-card *ngIf="!this.movies" color="danger">
         <ion-card-header style="text-align: center">

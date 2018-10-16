@@ -10,12 +10,18 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { doesNotThrow } from 'assert';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { SearchMovieComponent } from '../search-movie/search-movie.component';
 
 fdescribe('MoviesComponent', () => {
   
-  let component: MoviesComponent;
-  let fixture: ComponentFixture<MoviesComponent>;
+  let moviesComponent: MoviesComponent;
+  let moviesfixture: ComponentFixture<MoviesComponent>;
+
+  let searchMovieComponent: SearchMovieComponent;
+  let searchMovieFixture: ComponentFixture<SearchMovieComponent>;
+
+  let titleElems: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,25 +34,59 @@ fdescribe('MoviesComponent', () => {
         HttpClient,
         HttpHandler,
         {provide: NavParams, useClass: NavParamsMock}],
-      declarations: [ MoviesComponent ]
+      declarations: [ MoviesComponent, SearchMovieComponent ]
     }).compileComponents();
   }));  
 
-  beforeEach(async(() => {
-    fixture = TestBed.createComponent(MoviesComponent);
-    component = fixture.componentInstance;
-  }));
+  beforeEach(() => {
+    
+    moviesfixture = TestBed.createComponent(MoviesComponent);
+    moviesComponent = moviesfixture.componentInstance;
+
+    searchMovieFixture = TestBed.createComponent(SearchMovieComponent);
+    searchMovieComponent = searchMovieFixture.componentInstance;
+
+    moviesfixture.detectChanges();
+    searchMovieFixture.detectChanges();
+
+    titleElems = moviesfixture.debugElement.queryAll(By.css("ion-card-title"));
+  });
 
   it(`should create`, async(() => {
-      fixture.detectChanges();
-      expect(component).toBeTruthy();
+    moviesfixture.detectChanges();
+      expect(moviesComponent).toBeTruthy();
   }));
 
   it(`should have movie title`, async(() => {
-      fixture.detectChanges();
-      const titleElems = fixture.debugElement.queryAll(By.css("ion-card-title"));
-      expect(titleElems[0].nativeElement.innerHTML.trim()).toEqual("Taking Earth 2");
-      expect(titleElems[1].nativeElement.innerHTML.trim()).toEqual("Fittest on Earth: A Decade of Fitness");
+      
+    moviesfixture.detectChanges();
+      
+      let specTitles = [
+          'Taking Earth',
+          'Fittest on Earth: A Decade of Fitness'
+      ];
+
+      for (let elem in titleElems) {
+        expect(titleElems[elem].nativeElement.innerHTML.trim()).toEqual(specTitles[elem]);
+      }
+      
+  }));
+
+  it('Should displayed list of movies with earth title', async(() => {
+        moviesfixture.detectChanges();
+
+        let params = {target: { value: 'Earth'}};
+        searchMovieComponent.doSearchMovie(params);
+        moviesComponent.movies = searchMovieComponent.movies;
+
+        let specTitles = [
+          'Taking Earth',
+          'Fittest on Earth: A Decade of Fitness'
+        ];
+
+        for (let elem in titleElems) {
+          expect(titleElems[elem].nativeElement.innerHTML.trim()).toEqual(specTitles[elem]);
+        }
   }));
 
 });

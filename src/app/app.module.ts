@@ -15,6 +15,7 @@ import { ConfigService } from './shared/services/config.service';
 import { MovieViewComponent } from './pages/movie-view/movie-view.component';
 import { PageRatingComponent } from './pages/page-rating/page-rating.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { SearchMovieComponent } from './pages/search-movie/search-movie.component';
 
 
 export const firebaseConf = {
@@ -41,14 +42,16 @@ export const firebaseConf = {
     MoviesComponent, 
     MovieViewComponent,
     PageRatingComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    SearchMovieComponent
   ],
   entryComponents: [ 
     AppComponent, 
     MoviesComponent,
     MovieViewComponent,
     PageRatingComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    SearchMovieComponent
   ],
   providers: [
     ConfigService,

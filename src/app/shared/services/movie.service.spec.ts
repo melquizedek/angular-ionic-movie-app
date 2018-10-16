@@ -3,8 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { MovieService } from "./movie.service";
 import { ConfigService } from "./config.service";
 
-
-
 describe('MovieService', () => {
 
     let movieService: MovieService;

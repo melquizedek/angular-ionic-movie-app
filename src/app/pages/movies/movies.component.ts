@@ -39,17 +39,8 @@ export class MoviesComponent implements OnDestroy {
 		ionViewLoaded() {
 		}
 
-		searchMovie(ev: any) {
-					let keyword = (ev.target.value) ? ev.target.value : "earth";
-					this.movieService.getMovie(keyword, '10', '', '')
-							.subscribe((resp: any) => {
-									this.movies = null;
-									if (resp.Response === "True") {
-										this.movies = resp.Search.sort((a, b) => {
-															return b.Year - a.Year;
-														});
-									}
-							});
+		doSearchMovie(movies: any) {
+			this.movies = movies;
 		}
 	  
 		selectedMovie(imdbId: any) {
