@@ -4,7 +4,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,9 @@ import { MovieViewComponent } from './pages/movie-view/movie-view.component';
 import { PageRatingComponent } from './pages/page-rating/page-rating.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { SearchMovieComponent } from './pages/search-movie/search-movie.component';
+import { HttpConfServiceService } from './shared/services/http-conf-service.service';
+import { HttpLoaderService } from './shared/services/http-loader.service';
+import { AjaxLoaderComponent } from './pages/ajax-loader/ajax-loader.component';
 
 
 export const firebaseConf = {
@@ -43,7 +46,8 @@ export const firebaseConf = {
     MovieViewComponent,
     PageRatingComponent,
     FileUploadComponent,
-    SearchMovieComponent
+    SearchMovieComponent,
+    AjaxLoaderComponent
   ],
   entryComponents: [ 
     AppComponent, 
@@ -51,11 +55,18 @@ export const firebaseConf = {
     MovieViewComponent,
     PageRatingComponent,
     FileUploadComponent,
-    SearchMovieComponent
+    SearchMovieComponent,
+    AjaxLoaderComponent
   ],
   providers: [
     ConfigService,
-    MovieService
+    MovieService,
+    HttpLoaderService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpConfServiceService,
+        multi: true
+    }
   ],
   bootstrap: [ IonicApp ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
