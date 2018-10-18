@@ -22,7 +22,7 @@ export class HttpConfServiceService implements HttpInterceptor {
                   console.log(event);
               }, error => {
                   console.log('HTTP Error: ', error);
-              }, complete => {
+              }, (complete: any) => {
                 console.log(complete);
                 this.httpLoaderService.isAjaxStart.next(false);
               })

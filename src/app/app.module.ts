@@ -7,6 +7,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SocialLoginModule, AuthServiceConfig } from "angular5-social-login";
+import { FacebookLoginProvider } from "angular5-social-login";
+import { getAuthServiceConfigs } from "../environments/socialLoginConf";
+
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 
@@ -19,6 +23,7 @@ import { SearchMovieComponent } from './pages/search-movie/search-movie.componen
 import { HttpConfServiceService } from './shared/services/http-conf-service.service';
 import { HttpLoaderService } from './shared/services/http-loader.service';
 import { AjaxLoaderComponent } from './pages/ajax-loader/ajax-loader.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 
 export const firebaseConf = {
@@ -38,7 +43,8 @@ export const firebaseConf = {
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConf),
     AngularFireDatabaseModule,
-    Ionic2RatingModule
+    Ionic2RatingModule,
+    SocialLoginModule
   ],
   declarations: [ 
     AppComponent, 
@@ -47,7 +53,8 @@ export const firebaseConf = {
     PageRatingComponent,
     FileUploadComponent,
     SearchMovieComponent,
-    AjaxLoaderComponent
+    AjaxLoaderComponent,
+    SignInComponent
   ],
   entryComponents: [ 
     AppComponent, 
@@ -56,7 +63,8 @@ export const firebaseConf = {
     PageRatingComponent,
     FileUploadComponent,
     SearchMovieComponent,
-    AjaxLoaderComponent
+    AjaxLoaderComponent,
+    SignInComponent
   ],
   providers: [
     ConfigService,
@@ -66,6 +74,10 @@ export const firebaseConf = {
         provide: HTTP_INTERCEPTORS,
         useClass: HttpConfServiceService,
         multi: true
+    },
+    {
+        provide: AuthServiceConfig,
+        useFactory: getAuthServiceConfigs
     }
   ],
   bootstrap: [ IonicApp ],
