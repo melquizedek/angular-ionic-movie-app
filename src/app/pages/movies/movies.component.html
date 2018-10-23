@@ -6,6 +6,8 @@
   <ion-content padding>
       
     <app-search-movie (searchMovie)="doSearchMovie($event)"></app-search-movie>
+    
+    <app-pagination [totalPages]="totalResults"></app-pagination>
 
     <ion-card *ngIf="!this.movies" color="danger">
         <ion-card-header style="text-align: center">

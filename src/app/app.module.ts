@@ -24,6 +24,7 @@ import { HttpConfServiceService } from './shared/services/http-conf-service.serv
 import { HttpLoaderService } from './shared/services/http-loader.service';
 import { AjaxLoaderComponent } from './pages/ajax-loader/ajax-loader.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { PaginationComponent } from './pages/pagination/pagination.component';
 
 
 export const firebaseConf = {
@@ -54,7 +55,8 @@ export const firebaseConf = {
     FileUploadComponent,
     SearchMovieComponent,
     AjaxLoaderComponent,
-    SignInComponent
+    SignInComponent,
+    PaginationComponent
   ],
   entryComponents: [ 
     AppComponent, 
@@ -64,7 +66,8 @@ export const firebaseConf = {
     FileUploadComponent,
     SearchMovieComponent,
     AjaxLoaderComponent,
-    SignInComponent
+    SignInComponent,
+    PaginationComponent
   ],
   providers: [
     ConfigService,

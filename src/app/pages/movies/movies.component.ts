@@ -17,7 +17,7 @@ export class MoviesComponent implements OnDestroy {
 		movies: any = null;
 		initTialMovieListSubcrip: Subscription;
 		movieResultListSubscrip: Subscription;
-
+		totalResults: number = 0;
 		constructor(public navCtrl: NavController, 
 			public navParams: NavParams,
 			private movieService: MovieService,
@@ -26,12 +26,14 @@ export class MoviesComponent implements OnDestroy {
 
 		ngOnInit() {
 					this.initTialMovieListSubcrip = 
-							this.movieService.getMovie('earth', '10', '', '')
+							this.movieService.getMovie('black', '1', '', '')
 							.subscribe((resp: any) => {
 										if (resp.Response === "True") {
 											this.movies = resp.Search.sort((a, b) => {
 														return b.Year - a.Year	
 												});
+												console.log('movies.component - resp.totalResults ', resp.totalResults);
+											this.totalResults = resp.totalResults;
 										}
 							});
 		}

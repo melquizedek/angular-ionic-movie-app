@@ -1,0 +1,9 @@
+{{page}}
+<ion-list>
+  <ion-item>
+    <ion-label>Page</ion-label>
+    <ion-select [(ngModel)]="page" interface="action-sheet" (ngModelChange)="selectedPage($event)">
+      <ion-option *ngFor="let page of pages; let i = index" [value]="page">{{page}}</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>

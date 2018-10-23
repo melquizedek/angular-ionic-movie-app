@@ -20,10 +20,10 @@ export class HttpConfServiceService implements HttpInterceptor {
           return next.handle(req).pipe(
               tap(event => {
                   console.log(event);
-              }, error => {
+              }, (error) => {
                   console.log('HTTP Error: ', error);
-              }, (complete: any) => {
-                console.log(complete);
+              }, () => {
+                // console.log(complete);
                 this.httpLoaderService.isAjaxStart.next(false);
               })
           );
